@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 a = 89
 b = 10
-
-# swap a and b
 a, b = b, a
-
-print("a={} - b={}".format(a, b))
+print("a={:d} - b={:d}".format(a, b))
