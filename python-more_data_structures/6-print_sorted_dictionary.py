@@ -3,6 +3,7 @@
 Print dictionary items sorted by key.
 """
 
+
 def print_sorted_dictionary(a_dictionary):
     """Print dictionary's key-value pairs sorted by keys.
 
