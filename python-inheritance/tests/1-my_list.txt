@@ -5,7 +5,6 @@
 >>> lst.append(2)
 >>> lst.print_sorted()
 [-5, 0, 2]
-
 >>> empty = MyList()
 >>> empty.print_sorted()
 []
