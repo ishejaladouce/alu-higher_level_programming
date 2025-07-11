@@ -1,11 +1,11 @@
 >>> MyList = __import__('1-my_list').MyList
->>> my_list = MyList()
->>> my_list.append(8)
->>> my_list.append(1)
->>> my_list.append(5)
->>> my_list
-[8, 1, 5]
->>> my_list.print_sorted()
-[1, 5, 8]
->>> my_list
-[8, 1, 5]
+>>> lst = MyList()
+>>> lst.append(-5)
+>>> lst.append(0)
+>>> lst.append(2)
+>>> lst.print_sorted()
+[-5, 0, 2]
+
+>>> empty = MyList()
+>>> empty.print_sorted()
+[]
