@@ -3,8 +3,13 @@
 >>> lst.append(-5)
 >>> lst.append(0)
 >>> lst.append(2)
->>> lst.print_sorted()
+>>> result = lst.print_sorted()
 [-5, 0, 2]
+>>> result
+[-5, 0, 2]
+
 >>> empty = MyList()
->>> empty.print_sorted()
+>>> output = empty.print_sorted()
+[]
+>>> output
 []

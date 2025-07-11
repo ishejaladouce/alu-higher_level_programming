@@ -13,9 +13,11 @@ class MyList(list):
     def print_sorted(self):
         """
         Prints the list in ascending sorted order without
-        modifying the original list.
+        modifying the original list. Returns the sorted list.
         """
-        print(sorted(self))
+        sorted_list = sorted(self)
+        print(sorted_list)
+        return sorted_list
 
     def __str__(self):
         """
