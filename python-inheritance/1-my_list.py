@@ -16,3 +16,9 @@ class MyList(list):
         modifying the original list.
         """
         print(sorted(self))
+
+    def __str__(self):
+        """
+        Returns the string representation of the list.
+        """
+        return super().__str__()
