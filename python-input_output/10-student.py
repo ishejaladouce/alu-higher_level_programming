@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-Student class with a method that returns a filtered dictionary
-representation of its attributes.
+This module defines a Student class with a filterable JSON serializer.
 """
 
 
@@ -21,4 +20,9 @@ class Student:
     def to_json(self, attrs=None):
         """
         Returns a dictionary representation of the Student.
-        If attr
+        If attrs is a list of strings, returns only matching attributes.
+        Otherwise, returns all attributes.
+        """
+        if isinstance(attrs, list) and all(isinstance(a, str) for a in attrs):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
+        return self.__dict__
