@@ -12,7 +12,7 @@ class Student:
 
     def __init__(self, first_name, last_name, age):
         """
-        Initialize a student.
+        Initializes a student instance with first_name, last_name, and age.
         """
         self.first_name = first_name
         self.last_name = last_name
@@ -21,7 +21,8 @@ class Student:
     def to_json(self, attrs=None):
         """
         Returns a dictionary representation of the Student.
-        If attrs is a list of strings, returns only matching keys.
+        If attrs is a list of strings, returns only the matching keys.
+        Otherwise, returns all attributes.
         """
         if isinstance(attrs, list) and all(isinstance(attr, str)
                                            for attr in attrs):
@@ -32,7 +33,8 @@ class Student:
 
     def reload_from_json(self, json):
         """
-        Replaces all attributes of the Student using a dictionary.
+        Replaces all public attributes of the Student instance using
+        key-value pairs from the given dictionary.
         """
         for key, value in json.items():
             setattr(self, key, value)
