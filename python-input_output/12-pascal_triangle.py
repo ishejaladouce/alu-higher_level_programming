@@ -1,42 +1,32 @@
 #!/usr/bin/python3
 """
-This module defines a Student class with methods to serialize
-and reload attributes from a dictionary.
+Module that contains the function pascal_triangle(n)
+which returns Pascal's triangle as a list of lists.
 """
 
 
-class Student:
+def pascal_triangle(n):
     """
-    Defines a student with first_name, last_name, and age.
+    Returns a list of lists of integers representing
+    the Pascal's triangle of n.
+
+    Args:
+        n (int): Number of rows of the triangle
+
+    Returns:
+        list: Pascal's triangle represented as a list of lists
     """
+    if n <= 0:
+        return []
 
-    def __init__(self, first_name, last_name, age):
-        """
-        Initializes a student instance with first_name, last_name, and age.
-        """
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
+    triangle = [[1]]
 
+    for i in range(1, n):
+        row = [1]
+        prev_row = triangle[i - 1]
+        for j in range(1, i):
+            row.append(prev_row[j - 1] + prev_row[j])
+        row.append(1)
+        triangle.append(row)
 
-    def to_json(self, attrs=None):
-        """
-        Returns a dictionary representation of the Student.
-        If attrs is a list of strings, returns only the matching keys.
-        Otherwise, returns all attributes.
-        """
-        if isinstance(attrs, list) and all(isinstance(attr, str)
-                                           for attr in attrs):
-            return {
-                k: getattr(self, k) for k in attrs if hasattr(self, k)
-            }
-        return self.__dict__
-
-
-    def reload_from_json(self, json):
-        """
-        Replaces all public attributes of the Student instance using
-        key-value pairs from the given dictionary.
-        """
-        for key, value in json.items():
-            setattr(self, key, value)
+    return triangle
