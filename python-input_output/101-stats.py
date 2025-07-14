@@ -32,15 +32,23 @@ try:
         if len(parts) < 2:
             # Malformed line; skip
             continue
+        # Try to parse file size first (last element)
+        try:
+            size = int(parts[-1])
+            total_size += size
+        except ValueError:
+            # Can't parse file size; skip adding size
+            continue
+
+        # Try to parse status code (second last element)
         try:
             status = int(parts[-2])
-            size = int(parts[-1])
+            if status in status_counts:
+                status_counts[status] += 1
         except ValueError:
-            # Malformed status or size; skip line
-            continue
-        if status in status_counts:
-            status_counts[status] += 1
-        total_size += size
+            # Malformed status code; just skip counting status
+            pass
+
         line_count += 1
         if line_count % 10 == 0:
             print_stats()
