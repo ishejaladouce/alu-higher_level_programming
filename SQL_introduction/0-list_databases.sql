@@ -1,1 +1,2 @@
-SHOW DATABASES;
+-- 0. List all databases on the MySQL server
+SHOW DATABASES ORDER BY `Database`;
