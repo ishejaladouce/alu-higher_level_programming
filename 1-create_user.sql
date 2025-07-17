@@ -6,4 +6,3 @@ GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
 
 -- Make sure privileges are loaded
 FLUSH PRIVILEGES;
-
