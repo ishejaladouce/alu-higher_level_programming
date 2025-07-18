@@ -1,8 +1,3 @@
--- Create user_0d_1 if it doesn't exist
+-- Write a script that creates the MySQL server user user_0d_1.
 CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
-
--- Grant all privileges on everything to user_0d_1
-GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
-
--- Apply privileges immediately
-FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';REVOKE AUDIT_ABORT_EXEMPT, FIREWALL_EXEMPT, AUTHENTICATION_POLICY_ADMIN, GROUP_REPLICATION_STREAM, PASSWORDLESS_USER_ADMIN, SENSITIVE_VARIABLES_OBSERVER, TELEMETRY_LOG_ADMIN ON *.* FROM 'user_0d_1'@'localhost';
