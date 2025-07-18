@@ -1,13 +1,10 @@
--- 100. Convert hbtn_0c_0 DB, first_table, and name field to utf8mb4 with utf8mb4_unicode_ci
+-- Script to convert hbtn_0c_0 database to UTF8 (utf8mb4, collate utf8mb4_unicode_ci)
 
--- Change the default charset and collation of the database
-ALTER DATABASE hbtn_0c_0 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Convert database to UTF8
+ALTER DATABASE hbtn_0c_0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
--- Select the database
+-- Select the database to work with
 USE hbtn_0c_0;
 
--- Change the table to utf8mb4 (this will change all columns unless overridden)
+-- Convert table to UTF8
 ALTER TABLE first_table CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- Fix the name column to use only collation (avoid explicit charset in output)
-ALTER TABLE first_table CHANGE name name VARCHAR(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL;
