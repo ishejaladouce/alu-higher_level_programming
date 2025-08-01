@@ -1,41 +1,37 @@
 #!/usr/bin/python3
 """
-Script that lists all State objects, and corresponding City objects,
-contained in the database hbtn_0e_101_usa
+Lists all State objects and corresponding City objects from the database.
 """
 
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from relationship_state import Base, State
+from sqlalchemy.orm import sessionmaker, joinedload
+from relationship_state import State
 from relationship_city import City
+from sqlalchemy.orm import scoped_session
 
-if __name__ == "__main__":
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
 
-    # Create engine to connect to MySQL server
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        username, password, database), pool_pre_ping=True)
+def main():
+    """Connects to the database and lists all states and their cities"""
+    username, password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
+    url = f"mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}"
 
-    # Create a configured "Session" class
-    Session = sessionmaker(bind=engine)
-
-    # Create a Session
+    # Create engine and session
+    engine = create_engine(url, pool_pre_ping=True)
+    Session = scoped_session(sessionmaker(bind=engine))
     session = Session()
 
-    # Query for all states with their cities using the relationship
-    # This uses one query with eager loading to get both states and cities
-    states = session.query(State).order_by(State.id).all()
+    # Query all states with joined cities, sorted by state.id and city.id
+    states = session.query(State).options(joinedload(State.cities)).order_by(State.id).all()
 
-    # Display results
     for state in states:
-        print("{}: {}".format(state.id, state.name))
-        # Access cities through the relationship - they're sorted by id
-        for city in sorted(state.cities, key=lambda x: x.id):
-            print("    {}: {}".format(city.id, city.name))
+        print(f"{state.id}: {state.name}")
+        sorted_cities = sorted(state.cities, key=lambda city: city.id)
+        for city in sorted_cities:
+            print(f"\t{city.id}: {city.name}")
 
-    # Close the session
     session.close()
+
+
+if __name__ == "__main__":
+    main()
