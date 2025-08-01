@@ -6,6 +6,7 @@ Lists all states with a name starting with 'N' from the database.
 import MySQLdb
 import sys
 
+
 def main():
     """Connects to the database and lists states starting with 'N'"""
     username, password, dbname = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -34,5 +35,7 @@ def main():
     cur.close()
     db.close()
 
+
 if __name__ == "__main__":
     main()
+
