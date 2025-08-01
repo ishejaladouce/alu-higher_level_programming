@@ -1,3 +1,3 @@
 #!/bin/bash
-# Display body only if HTTP status code is 200
-response=$(curl -s -w "%{http_code}" "$1"); echo "${response::-3}" | { [ "${response: -3}" == "200" ] && cat; }
+# Fetch URL with redirects, show body only if final status is 200
+response=$(curl -s -L -w "%{http_code}" "$1"); body=${response::-3}; code=${response: -3}; [ "$code" == "200" ] && echo "$body"
