@@ -1,6 +1,11 @@
 #!/usr/bin/node
-function add(a, b) {
-  return a + b;
-}
+const myObject = {
+  type: 'object',
+  value: 12
+};
+console.log(myObject);
 
-exports.add = add;
+/* YOUR CODE HERE */
+myObject.value = 89;
+
+console.log(myObject);
