@@ -1,0 +1,18 @@
+#!/usr/bin/node
+// 2-rectangle.js
+// Defines a Rectangle class that validates width and height
+
+class Rectangle {
+  constructor (w, h) {
+    // Validate that w and h are positive integers
+    if (typeof w !== 'number' || typeof h !== 'number' || w <= 0 || h <= 0) {
+      // Return an empty object
+      return {};
+    }
+
+    this.width = w;
+    this.height = h;
+  }
+}
+
+module.exports = Rectangle;
