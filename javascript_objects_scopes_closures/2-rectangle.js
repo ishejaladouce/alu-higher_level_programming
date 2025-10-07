@@ -4,10 +4,10 @@
 
 class Rectangle {
   constructor (w, h) {
-    // Validate that w and h are positive integers
+    // Validate that w and h are positive integers (numbers > 0)
     if (typeof w !== 'number' || typeof h !== 'number' || w <= 0 || h <= 0) {
-      // Return an empty object
-      return {};
+      // Do not set properties — keep the instance empty
+      return;
     }
 
     this.width = w;
