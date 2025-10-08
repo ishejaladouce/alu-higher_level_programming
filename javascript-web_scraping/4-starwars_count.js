@@ -16,6 +16,7 @@ request(url, (error, response, body) => {
     let count = 0;
 
     data.results.forEach(film => {
+      // Make sure to include the trailing slash
       if (film.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')) {
         count++;
       }
