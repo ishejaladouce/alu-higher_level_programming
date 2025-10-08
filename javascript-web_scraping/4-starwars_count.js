@@ -1,6 +1,6 @@
 #!/usr/bin/node
 // 4-starwars_count.js
-// Prints the number of Star Wars movies where "Wedge Antilles" is present
+// Count the number of movies where "Wedge Antilles" appears
 
 const request = require('request');
 const url = process.argv[2];
@@ -16,8 +16,8 @@ request(url, (error, response, body) => {
     let count = 0;
 
     data.results.forEach(film => {
-      // Make sure to include the trailing slash
-      if (film.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')) {
+      // Count if any character URL ends with '/18/'
+      if (film.characters.some(charURL => charURL.endsWith('/18/'))) {
         count++;
       }
     });
